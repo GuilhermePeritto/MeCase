@@ -6,6 +6,7 @@ import { useLanguage } from '../providers/LanguageProvider'
 import AddGift from "./AddGift"
 import { GenerateLink } from "./GenerateLink"
 import Header from "./Header"
+import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "./pageHeader"
 
 type Gift = {
   id: number;
@@ -49,11 +50,15 @@ export default function CoupleInterface() {
   const remainingValue = totalValue - purchasedValue
 
   return (
-    <div>
+    <div className="border">
       <Header />
-      <div className="space-y-8 px-5">
-        <h1 className="text-3xl font-bold mb-8">{t('coupleGiftRegistry')}</h1>
-
+      <div className="space-y-8 px-8">
+        <PageHeader>
+          <PageHeaderHeading>{t('coupleGiftRegistry')}</PageHeaderHeading>
+          <PageHeaderDescription>
+            {t('weddingGiftRegistry')}
+          </PageHeaderDescription>
+        </PageHeader>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <Card>
             <CardHeader>
@@ -98,7 +103,7 @@ export default function CoupleInterface() {
                 <TabsTrigger value="purchased">{t('purchasedGifts')}</TabsTrigger>
                 <TabsTrigger value="unpurchased">{t('unpurchasedGifts')}</TabsTrigger>
               </TabsList>
-            <GenerateLink />
+              <GenerateLink />
             </div>
             <TabsContent value="all">
               <GiftGrid gifts={gifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
@@ -110,9 +115,7 @@ export default function CoupleInterface() {
               <GiftGrid gifts={unpurchasedGifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
             </TabsContent>
           </Tabs>
-
         </div>
-
       </div>
     </div>
   )
@@ -126,41 +129,44 @@ type GiftGridProps = {
 }
 
 function GiftGrid({ gifts, addGift, setNewGift, newGift }: GiftGridProps) {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
+
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <AddGift addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
-      {gifts.map((gift) => (
-        <Card key={gift.id}>
-          <CardHeader>
-            <CardTitle className="text-xl">{gift.name}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold mb-2 flex items-center">
-              {t('monetaryFigure')}
-              {gift.price.toFixed(2)}
-            </p>
-            <p className="text-gray-500 text-sm mb-2">{gift.description}</p>
-            <p className="text-sm font-medium text-gray-500 mb-2">
-              {gift.purchased ? t('purchased') : t('notPurchased')}
-            </p>
-            {gift.purchased && (
-              <>
-                <p className="text-sm font-medium flex items-center mb-1">
-                  <User className="h-4 w-4 mr-1" />
-                  {t('purchasedBy')}: {gift.purchasedBy}
-                </p>
-                {gift.message && (
-                  <p className="text-sm flex items-start">
-                    <MessageSquare className="h-4 w-4 mr-1 mt-1" />
-                    {t('message')}: {gift.message}
+    <div className="relative">
+      <div className="grid gap-6 md:grid-cols-2 pb-8 lg:grid-cols-3">
+        <AddGift addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
+        {gifts.map((gift) => (
+          <Card key={gift.id}>
+            <CardHeader>
+              <CardTitle className="text-xl">{gift.name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold mb-2 flex items-center">
+                {t('monetaryFigure')}
+                {gift.price.toFixed(2)}
+              </p>
+              <p className="text-gray-500 text-sm mb-2">{gift.description}</p>
+              <p className="text-sm font-medium text-gray-500 mb-2">
+                {gift.purchased ? t('purchased') : t('notPurchased')}
+              </p>
+              {gift.purchased && (
+                <>
+                  <p className="text-sm font-medium flex items-center mb-1">
+                    <User className="h-4 w-4 mr-1" />
+                    {t('purchasedBy')}: {gift.purchasedBy}
                   </p>
-                )}
-              </>
-            )}
-          </CardContent>
-        </Card>
-      ))}
+                  {gift.message && (
+                    <p className="text-sm flex items-start">
+                      <MessageSquare className="h-4 w-4 mr-1 mt-1" />
+                      {t('message')}: {gift.message}
+                    </p>
+                  )}
+                </>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   )
 }

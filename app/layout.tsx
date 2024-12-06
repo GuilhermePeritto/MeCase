@@ -1,3 +1,4 @@
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { AuthProvider } from '@/providers/AuthenticationProvider'
 import { LanguageProvider } from '@/providers/LanguageProvider'
 import { SettingsProvider } from '@/providers/SettingsProvider'
@@ -29,7 +30,9 @@ export default function RootLayout({
           >
             <LanguageProvider>
               <SettingsProvider>
-                {children}
+                <ScrollArea className='h-screen'>
+                  {children}
+                </ScrollArea>
               </SettingsProvider>
             </LanguageProvider>
           </ThemeProvider>

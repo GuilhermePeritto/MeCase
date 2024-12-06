@@ -19,6 +19,7 @@ import { useSettings } from "@/providers/SettingsProvider"
 import { Gift } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { useState } from 'react'
+import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "./pageHeader"
 
 type Gift = {
   id: number;
@@ -53,9 +54,14 @@ export default function GuestInterface() {
   }
 
   return (
-    <div className="space-y-8">
-      <h1 className="text-4xl font-bold mb-8">{t('weddingGiftRegistry')}</h1>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="space-y-8 h-[95%] px-8 border">
+      <PageHeader>
+          <PageHeaderHeading>{t('weddingGiftRegistry')}</PageHeaderHeading>
+          <PageHeaderDescription>
+            {t('guestGiftRegistry')}
+          </PageHeaderDescription>
+        </PageHeader>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
         {gifts.map((gift) => (
           <Card key={gift.id} className="cursor-pointer hover:shadow-md transition-shadow">
             <CardHeader>

@@ -8,9 +8,9 @@ export default function Header() {
   const { t } = useLanguage()
 
   return (
-    <header className="shadow-sm flex h-12 w-full mb-8 border-b">
+    <header className="shadow-sm flex h-12 w-full mb-8 border-b px-5">
       <nav className="container mx-auto w-full flex justify-between items-center">
-        <Link href="/" className="text-2xl pl-5 font-bold text-gray-800 dark:text-white cursor-pointer">
+        <Link href="/" className="text-2xl font-bold text-gray-800 dark:text-white cursor-pointer">
           {t('systemName')}
         </Link>
         <UserNav />
