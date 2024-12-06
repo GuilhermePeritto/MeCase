@@ -54,7 +54,7 @@ export default function GuestInterface() {
   }
 
   return (
-    <div className="space-y-8 h-[95%] px-8 border">
+    <div className="space-y-8 lg:h-screen px-8 pb-8 border">
       <PageHeader>
           <PageHeaderHeading>{t('weddingGiftRegistry')}</PageHeaderHeading>
           <PageHeaderDescription>

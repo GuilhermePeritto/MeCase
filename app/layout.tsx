@@ -1,4 +1,3 @@
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { AuthProvider } from '@/providers/AuthenticationProvider'
 import { LanguageProvider } from '@/providers/LanguageProvider'
 import { SettingsProvider } from '@/providers/SettingsProvider'
@@ -11,7 +10,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="pt">
       <head>
         <meta
           charSet="utf-8"
@@ -30,9 +29,7 @@ export default function RootLayout({
           >
             <LanguageProvider>
               <SettingsProvider>
-                <ScrollArea className='h-screen'>
                   {children}
-                </ScrollArea>
               </SettingsProvider>
             </LanguageProvider>
           </ThemeProvider>

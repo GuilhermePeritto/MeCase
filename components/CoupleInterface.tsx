@@ -97,7 +97,7 @@ export default function CoupleInterface() {
 
         <div>
           <Tabs defaultValue="all" className="w-full">
-            <div className="w-full flex justify-between">
+            <div className="w-full h-full md:flex-row smm:flex-col flex justify-between">
               <TabsList className="mb-4">
                 <TabsTrigger value="all">{t('allGifts')}</TabsTrigger>
                 <TabsTrigger value="purchased">{t('purchasedGifts')}</TabsTrigger>

@@ -6,21 +6,30 @@ import { Language, translations } from '../utils/translations'
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string,
-  getRandomQuote: () => { text: string, author: string }
+  t: (key: string) => string
+  quote: { text: string; author: string } | null
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en')
+  const [quote, setQuote] = useState<{ text: string; author: string } | null>(null)
 
   useEffect(() => {
+    // Recuperar o idioma salvo no localStorage
     const savedLanguage = localStorage.getItem('language') as Language
     if (savedLanguage) {
       setLanguageState(savedLanguage)
     }
   }, [])
+
+  useEffect(() => {
+    // Gerar uma frase aleatória no cliente quando o idioma mudar
+    const quotes = translations[language].quotes
+    const randomIndex = Math.floor(Math.random() * quotes.length)
+    setQuote(quotes[randomIndex])
+  }, [language])
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
@@ -31,14 +40,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return translations[language][key] || key
   }
 
-  function getRandomQuote() {
-    const quotes = translations[language].quotes;
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return quotes[randomIndex];
-  }
-
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, getRandomQuote }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, quote }}>
       {children}
     </LanguageContext.Provider>
   )
@@ -51,4 +54,3 @@ export const useLanguage = () => {
   }
   return context
 }
-
