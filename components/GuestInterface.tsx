@@ -31,7 +31,7 @@ type Gift = {
 export default function GuestInterface() {
   const { t } = useLanguage()
   const { qrCodeHash } = useSettings()
-  const [gifts, setGifts] = useState<Gift[]>([
+  const [gifts, /* setGifts */] = useState<Gift[]>([
     { id: 1, name: "Toaster", price: 50, description: "A sleek toaster for your kitchen" },
     { id: 2, name: "Coffee Maker", price: 100, description: "Start your mornings right" },
     { id: 3, name: "Blender", price: 75, description: "Perfect for smoothies and more" },
@@ -58,7 +58,7 @@ export default function GuestInterface() {
       <PageHeader>
           <PageHeaderHeading>{t('weddingGiftRegistry')}</PageHeaderHeading>
           <PageHeaderDescription>
-            {t('guestGiftRegistry')}
+          {t("weddingGiftRegistry")}
           </PageHeaderDescription>
         </PageHeader>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">

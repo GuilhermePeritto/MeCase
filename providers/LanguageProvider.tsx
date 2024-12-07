@@ -6,7 +6,7 @@ import { Language, translations } from '../utils/translations'
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: keyof typeof translations[Language]) => string
   quote: { text: string; author: string } | null
 }
 
@@ -36,8 +36,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('language', lang)
   }
 
-  const t = (key: string): string => {
-    return translations[language][key] || key
+  const t = (key: keyof typeof translations[Language]) => {
+    const translation = translations[language][key];
+    if (key === 'quotes') {
+      return 'Quotes cannot be translated to a string';
+    }
+    return typeof translation === 'string' ? translation : key;
   }
 
   return (

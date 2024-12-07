@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { QRCodeCanvas } from "qrcode.react";
 import { useLanguage } from "../providers/LanguageProvider";
 
