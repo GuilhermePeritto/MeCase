@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MessageSquare, User } from 'lucide-react'
 import { useState } from 'react'
+import { toast } from "sonner"
 import { useLanguage } from '../providers/LanguageProvider'
 import AddGift from "./AddGift"
 import { GenerateLink } from "./GenerateLink"
@@ -40,6 +41,7 @@ export default function CoupleInterface() {
         purchased: false
       }])
       setNewGift({ name: '', price: '', description: '' })
+      toast.success(t('giftAdded'))
     }
   }
 
@@ -51,7 +53,7 @@ export default function CoupleInterface() {
   const remainingValue = totalValue - purchasedValue
 
   return (
-    <div className="border">
+    <div className="border w-screen">
       <Header />
       <div className="space-y-8 px-8">
         <PageHeader>

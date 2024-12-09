@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner'
 import { AuthProvider } from '@/providers/AuthenticationProvider'
 import { LanguageProvider } from '@/providers/LanguageProvider'
 import { SettingsProvider } from '@/providers/SettingsProvider'
@@ -27,9 +28,20 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
           >
+            <Toaster
+              expand
+              visibleToasts={2}
+              position='top-center'
+              toastOptions={{
+                classNames: {
+                  success: 'dark:bg-white dark:text-black bg-background text-black',
+                  error: 'bg-red-500',
+                }
+              }}
+            />
             <LanguageProvider>
               <SettingsProvider>
-                  {children}
+                {children}
               </SettingsProvider>
             </LanguageProvider>
           </ThemeProvider>

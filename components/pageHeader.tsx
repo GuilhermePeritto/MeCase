@@ -8,7 +8,7 @@ function PageHeader({
   return (
     <section
       className={cn(
-        "flex flex-col items-start gap-2 border-b border-border/40 py-8 dark:border-border md:py-10 lg:py-12",
+        "flex flex-col items-start gap-2 border-b border-border/40 smm:py-6 dark:border-border",
         className
       )}
       {...props}
@@ -64,3 +64,4 @@ function PageActions({
 }
 
 export { PageActions, PageHeader, PageHeaderDescription, PageHeaderHeading }
+

@@ -120,6 +120,11 @@ export const translations = {
     profile: "Profile",
     billing: "Billing",
     logout: "Logout",
+    giftAdded: "Gift added successfully!",
+    generateLink: "Generate Link",
+    toggleTheme: "Toggle Theme",
+    setTheme: "Set Theme",
+    cancel: "Cancel",
   },
   pt: {
     quotes: [
@@ -241,6 +246,11 @@ export const translations = {
     profile: "Perfil",
     billing: "Pagamento",
     logout: "Sair",
+    giftAdded: "Presente adicionado com sucesso!",
+    generateLink: "Gerar Link",
+    toggleTheme: "Alternar Tema",
+    setTheme: "Definir o tema",
+    cancel: "Cancelar",
   }
 };
 

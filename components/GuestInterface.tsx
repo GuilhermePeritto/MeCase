@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -54,7 +55,7 @@ export default function GuestInterface() {
   }
 
   return (
-    <div className="space-y-8 lg:h-screen px-8 pb-8 border">
+    <div className="space-y-8 lg:h-screen w-screen px-8 pb-8 border">
       <PageHeader>
           <PageHeaderHeading>{t('weddingGiftRegistry')}</PageHeaderHeading>
           <PageHeaderDescription>
@@ -79,7 +80,7 @@ export default function GuestInterface() {
                     <Gift className="mr-2 h-5 w-5" /> {t('viewGift')}
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="sm:max-w-[425px] smm:w-[85%] rounded-md">
                   <DialogHeader>
                     <DialogTitle className="text-2xl">{gift.name}</DialogTitle>
                     <DialogDescription>
@@ -117,7 +118,10 @@ export default function GuestInterface() {
                       <QRCodeSVG value={`${qrCodeHash}/purchase/${gift.id}`} size={200} />
                     </div>
                   </div>
-                  <DialogFooter>
+                  <DialogFooter className="flex gap-3 flex-row">
+                    <DialogClose asChild>
+                      <Button className="w-15">{t('cancel')}</Button>
+                    </DialogClose>
                     <Button className="w-full" onClick={handlePurchase}>{t('purchase')}</Button>
                   </DialogFooter>
                 </DialogContent>
