@@ -1,5 +1,6 @@
 import { Toaster } from '@/components/ui/sonner'
 import { AuthProvider } from '@/providers/AuthenticationProvider'
+import { IntroProvider } from '@/providers/IntroProvider'
 import { LanguageProvider } from '@/providers/LanguageProvider'
 import { SettingsProvider } from '@/providers/SettingsProvider'
 import { ThemeProvider } from '@/providers/ThemeProvider'
@@ -40,9 +41,11 @@ export default function RootLayout({
               }}
             />
             <LanguageProvider>
-              <SettingsProvider>
-                {children}
-              </SettingsProvider>
+              <IntroProvider>
+                <SettingsProvider>
+                  {children}
+                </SettingsProvider>
+              </IntroProvider>
             </LanguageProvider>
           </ThemeProvider>
         </AuthProvider>

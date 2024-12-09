@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useIntro } from "@/providers/IntroProvider"
 import { MessageSquare, User } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from "sonner"
@@ -8,7 +9,9 @@ import { useLanguage } from '../providers/LanguageProvider'
 import AddGift from "./AddGift"
 import { GenerateLink } from "./GenerateLink"
 import Header from "./Header"
+import IntroCards from "./IntroCards"
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "./pageHeader"
+import { Dialog } from "./ui/dialog"
 
 type Gift = {
   id: number;
@@ -21,7 +24,11 @@ type Gift = {
 }
 
 export default function CoupleInterface() {
+
   const { t } = useLanguage()
+
+  const { showIntro } = useIntro()
+
   const [gifts, setGifts] = useState<Gift[]>([
     { id: 1, name: "Toaster", price: 50, description: "A sleek toaster for your kitchen", purchased: false },
     { id: 2, name: "Coffee Maker", price: 100, description: "Start your mornings right", purchased: false },
@@ -29,6 +36,7 @@ export default function CoupleInterface() {
     { id: 4, name: "Dinnerware Set", price: 200, description: "Elegant dining for your new home", purchased: false },
     { id: 5, name: "Bedding Set", price: 150, description: "Luxurious comfort for your bedroom", purchased: true, purchasedBy: "Jane Smith", message: "Sweet dreams in your new home!" },
   ])
+
   const [newGift, setNewGift] = useState({ name: '', price: '', description: '' })
 
   const addGift = () => {
@@ -54,72 +62,75 @@ export default function CoupleInterface() {
 
   return (
     <div className="border w-screen">
-      <Header />
-      <div className="space-y-8 px-8">
-        <PageHeader>
-          <PageHeaderHeading>{t('coupleGiftRegistry')}</PageHeaderHeading>
-          <PageHeaderDescription>
-            {t('weddingGiftRegistry')}
-          </PageHeaderDescription>
-        </PageHeader>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex text-lg justify-center">{t('totalValue')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-3xl font-bold flex items-center justify-center">
-                {t('monetaryFigure')}
-                {totalValue.toFixed(2)}
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex text-lg justify-center">{t('purchasedValue')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-3xl font-bold flex items-center justify-center">
-                {t('monetaryFigure')}
-                {purchasedValue.toFixed(2)}
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex text-lg justify-center">{t('remainingValue')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-3xl font-bold flex items-center justify-center">
-                {t('monetaryFigure')}
-                {remainingValue.toFixed(2)}
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+      <Dialog defaultOpen={showIntro}>
+        <IntroCards />
+        <Header />
+        <div className="space-y-8 px-8">
+          <PageHeader>
+            <PageHeaderHeading>{t('coupleGiftRegistry')}</PageHeaderHeading>
+            <PageHeaderDescription>
+              {t('weddingGiftRegistry')}
+            </PageHeaderDescription>
+          </PageHeader>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex text-lg justify-center">{t('totalValue')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold flex items-center justify-center">
+                  {t('monetaryFigure')}
+                  {totalValue.toFixed(2)}
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex text-lg justify-center">{t('purchasedValue')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold flex items-center justify-center">
+                  {t('monetaryFigure')}
+                  {purchasedValue.toFixed(2)}
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex text-lg justify-center">{t('remainingValue')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold flex items-center justify-center">
+                  {t('monetaryFigure')}
+                  {remainingValue.toFixed(2)}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
 
-        <div>
-          <Tabs defaultValue="all" className="w-full">
-            <div className="w-full h-full md:flex-row smm:flex-col flex justify-between">
-              <TabsList className="mb-4">
-                <TabsTrigger value="all">{t('allGifts')}</TabsTrigger>
-                <TabsTrigger value="purchased">{t('purchasedGifts')}</TabsTrigger>
-                <TabsTrigger value="unpurchased">{t('unpurchasedGifts')}</TabsTrigger>
-              </TabsList>
-              <GenerateLink />
-            </div>
-            <TabsContent value="all">
-              <GiftGrid gifts={gifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
-            </TabsContent>
-            <TabsContent value="purchased">
-              <GiftGrid gifts={purchasedGifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
-            </TabsContent>
-            <TabsContent value="unpurchased">
-              <GiftGrid gifts={unpurchasedGifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
-            </TabsContent>
-          </Tabs>
+          <div>
+            <Tabs defaultValue="all" className="w-full">
+              <div className="w-full h-full md:flex-row smm:flex-col flex justify-between">
+                <TabsList className="mb-4">
+                  <TabsTrigger value="all">{t('allGifts')}</TabsTrigger>
+                  <TabsTrigger value="purchased">{t('purchasedGifts')}</TabsTrigger>
+                  <TabsTrigger value="unpurchased">{t('unpurchasedGifts')}</TabsTrigger>
+                </TabsList>
+                <GenerateLink />
+              </div>
+              <TabsContent value="all">
+                <GiftGrid gifts={gifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
+              </TabsContent>
+              <TabsContent value="purchased">
+                <GiftGrid gifts={purchasedGifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
+              </TabsContent>
+              <TabsContent value="unpurchased">
+                <GiftGrid gifts={unpurchasedGifts} addGift={addGift} setNewGift={setNewGift} newGift={newGift} />
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
-      </div>
+      </Dialog>
     </div>
   )
 }

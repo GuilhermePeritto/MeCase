@@ -14,7 +14,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const setQrCodeHash = (hash: string) => {
     setQrCodeHashState(hash)
-    localStorage.setItem('qrCodeHash', hash)
+    typeof window !== "undefined" ? window.localStorage.setItem('qrCodeHash', hash) : null
   }
 
   return (

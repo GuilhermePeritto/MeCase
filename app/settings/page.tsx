@@ -60,7 +60,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-2">
-                <RadioGroup value={theme} onValueChange={(value) => setTheme(value as 'dark' | 'light')} className="flex space-x-4">
+                <RadioGroup value={theme} onValueChange={(value) => setTheme(value as 'dark' | 'light' | 'system')} className="flex space-x-4">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="dark" id="dark" />
                     <Label htmlFor="dark">{t("dark")}</Label>
@@ -68,6 +68,10 @@ export default function SettingsPage() {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="light" id="light" />
                     <Label htmlFor="light">{t("light")}</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="system" id="system" />
+                    <Label htmlFor="system">{t("system")}</Label>
                   </div>
                 </RadioGroup>
               </div>

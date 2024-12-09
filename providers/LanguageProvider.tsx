@@ -1,7 +1,8 @@
 'use client'
 
+import { Language } from '@/types/Language'
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { Language, translations } from '../utils/translations'
+import { translations } from '../utils/translations'
 
 type LanguageContextType = {
   language: Language
@@ -13,19 +14,17 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('en')
+  const [language, setLanguageState] = useState<Language>(navigator.language.split('-')[0] as Language || 'en')
   const [quote, setQuote] = useState<{ text: string; author: string } | null>(null)
 
   useEffect(() => {
-    // Recuperar o idioma salvo no localStorage
-    const savedLanguage = localStorage.getItem('language') as Language
+    const savedLanguage = typeof window !== "undefined" ? window.localStorage.getItem('language') as Language : null
     if (savedLanguage) {
       setLanguageState(savedLanguage)
     }
   }, [])
 
   useEffect(() => {
-    // Gerar uma frase aleatória no cliente quando o idioma mudar
     const quotes = translations[language].quotes
     const randomIndex = Math.floor(Math.random() * quotes.length)
     setQuote(quotes[randomIndex])
@@ -33,7 +32,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
-    localStorage.setItem('language', lang)
+    typeof window !== "undefined" ? window.localStorage.setItem('language', lang) : null
   }
 
   const t = (key: keyof typeof translations[Language]) => {

@@ -20,15 +20,19 @@ export function GenerateLink() {
     setIsGenerating(true)
     setLink('mecase.vercel.app/guest')
     navigator.clipboard.writeText(link)
-    toast.success('Link gerado com sucesso!')
-    setTimeout(() => setIsGenerating(false), 1500)
+    setTimeout(() => {
+      setIsGenerating(false)
+      toast.success('Link gerado com sucesso!')
+    }, 1500)
   }
 
   const copyLink = () => {
     setIsCopied(true)
     navigator.clipboard.writeText(link)
-    toast.success('Link copiado para a área de transferência!')
-    setTimeout(() => setIsCopied(false), 1500)
+    setTimeout(() => {
+      setIsCopied(false)
+      toast.success('Link copiado para a área de transferência!')
+    }, 1500)
   }
 
   return (
@@ -39,7 +43,7 @@ export function GenerateLink() {
         {isGenerating
           ? <Icons.spinner className="h-4 w-4 animate-spin" />
           : <div className="flex items-center gap-1 smm:p-8">
-            <Link/>
+            <Link />
             <Label>{t("generateLink")}</Label>
           </div>
         }
