@@ -1,10 +1,10 @@
 'use client'
 
-import Image from "next/image"
-import Link from "next/link"
+import Link from "next/link";
 
-import { UserAuthForm } from "@/components/forms/userAuthForm"
-import { useLanguage } from "@/providers/LanguageProvider"
+import { UserAuthForm } from "@/components/forms/userAuthForm";
+import { useLanguage } from "@/providers/LanguageProvider";
+import Image from "next/image";
 
 export default function AuthenticationPage() {
 
@@ -12,25 +12,15 @@ export default function AuthenticationPage() {
 
     return (
         <>
-            <div className="smm:hidden">
-                <Image
-                    src="/examples/authentication-light.png"
-                    width={1280}
-                    height={843}
-                    alt="Authentication"
-                    className="block dark:hidden"
-                />
-                <Image
-                    src="/examples/authentication-dark.png"
-                    width={1280}
-                    height={843}
-                    alt="Authentication"
-                    className="hidden dark:block"
-                />
-            </div>
             <div className="container relative hidden max-w-none h-screen flex-col smm:px-8 items-center justify-center smm:grid lg:grid-cols-2 lg:px-0">
                 <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-                    <div className="absolute inset-0 bg-zinc-900" />
+                <Image
+                    src="/images/image-login.png"
+                    layout="fill"
+                    objectFit="cover"
+                    alt="Authentication"
+                    className="h-full w-full object-cover dark:brightness-[0.6] dark:grayscale"
+                />
                     <div className="relative z-20 flex items-center text-lg font-medium">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +46,7 @@ export default function AuthenticationPage() {
                     </div>
                 </div>
                 <div className="lg:p-8">
+                    <img src="/favicon.ico" alt="Logo" className="w-24 h-24 mx-auto" />
                     <div className="mx-auto flex w-full flex-col justify-center space-y-6 lg:max-w-[30rem]">
                         <div className="flex flex-col space-y-2 text-center">
                             <h1 className="text-2xl font-semibold tracking-tight">
