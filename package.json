@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "app": "bubblewrap init"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -45,6 +46,7 @@
     "input-otp": "^1.4.1",
     "lucide-react": "^0.466.0",
     "next": "14.2.16",
+    "next-pwa": "^5.6.0",
     "next-themes": "^0.4.3",
     "qrcode.react": "^4.1.0",
     "react": "^18",
@@ -60,13 +62,13 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/node": "^20.17.9",
+    "@types/react": "^18.3.14",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.16",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.7.2"
   }
 }

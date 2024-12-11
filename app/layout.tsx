@@ -19,7 +19,11 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         />
-        <link rel="icon" type="image/svg+xml" href="/logo.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="Descrição da sua aplicação" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <link rel="icon" type="image/svg+xml" href="/icon-192x192.png" />
         <title>MeCase</title>
       </head>
       <body>

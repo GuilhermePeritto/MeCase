@@ -1,0 +1,21 @@
+{
+    "name": "CaseMe App",
+    "short_name": "CaseMe",
+    "description": "CaseMe App é uma aplicação de gerenciamento de presentes de casamento.",
+    "icons": [
+      {
+        "src": "/icon-192-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icon-512-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "display": "standalone"
+  }
